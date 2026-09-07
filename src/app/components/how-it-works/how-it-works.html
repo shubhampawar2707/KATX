@@ -1,0 +1,18 @@
+<section class="process-section section">
+  <div class="container">
+    <div class="section-heading reveal">
+      <p class="section-tag">How It Works</p>
+      <h2>Simple steps to a cleaner, healthier space.</h2>
+    </div>
+
+    <div class="timeline">
+      <div class="step reveal" *ngFor="let step of steps; let i = index">
+        <div class="step-number">0{{ i + 1 }}</div>
+        <div class="step-body">
+          <h3>{{ step.title }}</h3>
+          <p>{{ step.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,24 @@
+<section id="why-choose-us" class="why-section section">
+  <div class="container">
+    <div class="why-intro reveal">
+      <div class="why-intro-image" role="img" aria-label="Professional pest-control technician at work"></div>
+      <div>
+        <p class="section-tag">Peace of mind, built in</p>
+        <p class="why-intro-copy">Good pest control should feel professional from the first call: clear advice, careful treatment, and a tidy finish.</p>
+      </div>
+    </div>
+
+    <div class="section-heading reveal">
+      <p class="section-tag">Why Choose Us</p>
+      <h2>Trusted expertise backed by care and quality.</h2>
+    </div>
+
+    <div class="reason-grid">
+      <article class="reason-card reveal" *ngFor="let reason of reasons">
+        <div class="reason-icon">{{ reason.icon }}</div>
+        <h3>{{ reason.title }}</h3>
+        <p>{{ reason.description }}</p>
+      </article>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,32 @@
+<section id="services" class="services-section section">
+  <div class="container">
+    <div class="services-intro reveal">
+      <div>
+        <p class="section-tag">Pest &amp; Cleaning Care</p>
+        <h2>Practical solutions for the spaces you use every day.</h2>
+        <p>From targeted pest treatment to scheduled hospital and hotel care, our team helps you choose the right service without unnecessary complexity.</p>
+      </div>
+      <div class="services-intro-image" role="img" aria-label="KATX technician providing pest-control service"></div>
+    </div>
+
+    <div class="section-heading reveal">
+      <p class="section-tag">Our Services</p>
+      <h2>Complete pest control and cleaning solutions.</h2>
+    </div>
+
+    <div class="service-groups">
+      <div class="service-group reveal" *ngFor="let group of serviceGroups">
+        <h3>{{ group.title }}</h3>
+
+        <div class="service-grid">
+          <article class="service-card" *ngFor="let item of group.items">
+            <div class="icon-wrap">{{ item.icon }}</div>
+            <h4>{{ item.name }}</h4>
+            <p>{{ item.description }}</p>
+            <button class="service-action" type="button" (click)="requestEstimate(item.name)">Get an estimate <span aria-hidden="true">→</span></button>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

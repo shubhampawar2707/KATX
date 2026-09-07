@@ -1,0 +1,46 @@
+<section id="home" class="hero-section">
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <div class="hero-copy reveal">
+      <p class="eyebrow">Trusted Pest &amp; Hygiene Experts</p>
+      <div class="pricing-badge">
+        <span>Starting from</span>
+        <strong>₹999</strong>
+      </div>
+      <h1>Professional Pest Control Solutions You Can Trust</h1>
+      <p class="lead">Protecting homes, offices, hospitals, hotels, and businesses with safe, reliable pest-control and hygiene services.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#contact">Get Free Inspection</a>
+        <a class="btn btn-secondary" href="tel:+918446104688">Call Now</a>
+      </div>
+
+      <div class="service-tags" aria-label="Choose a pest problem">
+        <button type="button" *ngFor="let pest of pestCategories" (click)="choosePest(pest.service)">{{ pest.label }}</button>
+      </div>
+
+      <ul class="hero-points">
+        <li>Safe & eco-conscious treatments</li>
+        <li>Fast response support</li>
+        <li>Transparent pricing</li>
+      </ul>
+    </div>
+
+    <div class="hero-panel reveal">
+      <div class="panel-badge">24/7 Support</div>
+      <div class="mini-card">
+        <span class="mini-label">Emergency Pest Help</span>
+        <strong>+91 8446104688</strong>
+      </div>
+      <div class="stat-grid">
+        <div>
+          <strong>500+</strong>
+          <span>Homes protected</span>
+        </div>
+        <div>
+          <strong>10+</strong>
+          <span>Years experience</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

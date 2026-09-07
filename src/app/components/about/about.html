@@ -1,0 +1,31 @@
+<section id="about" class="about-section section">
+  <div class="container about-layout">
+    <div class="about-image reveal">
+      <div class="image-card">
+        <div class="image-badge">Trained pest-control technicians</div>
+      </div>
+    </div>
+
+    <div class="about-copy reveal">
+      <p class="section-tag">About Us</p>
+      <h2>Reliable pest management for a safer, cleaner environment.</h2>
+      <p>
+        KATX Pest Control Services provides reliable and professional pest management and hygiene
+        solutions for homes, offices, hospitals, hotels, and commercial properties. Our experienced
+        team focuses on safe, effective, and long-lasting protection for every environment we serve.
+      </p>
+
+      <div class="feature-grid">
+        <div class="feature-item" *ngFor="let feature of features">
+          <span class="feature-icon">{{ feature.icon }}</span>
+          <span>{{ feature.label }}</span>
+        </div>
+      </div>
+
+      <div class="about-actions">
+        <a class="about-button" routerLink="/contact">Talk to an expert <span aria-hidden="true">→</span></a>
+        <span class="about-note">Serving Pune, PCMC, Mumbai, Nashik, Raigad &amp; Chhatrapati Sambhajinagar</span>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,97 @@
+<app-hero></app-hero>
+
+<section class="trust-strip" aria-label="KATX service highlights">
+	<div class="container trust-strip-grid">
+		<div class="trust-item">
+			<strong>₹999</strong>
+			<span>Starting price</span>
+		</div>
+		<div class="trust-item">
+			<strong>10+ yrs</strong>
+			<span>Practical experience</span>
+		</div>
+		<div class="trust-item">
+			<strong>Same-day</strong>
+			<span>Response support</span>
+		</div>
+		<div class="trust-item">
+			<strong>Safe care</strong>
+			<span>For every environment</span>
+		</div>
+	</div>
+</section>
+
+<section class="callback-strip" aria-label="Quick callback request">
+	<div class="container callback-content">
+		<div>
+			<p class="section-tag">Need help choosing a treatment?</p>
+			<h2>Tell us the pest. We will guide you.</h2>
+			<p>Serving homes, offices, hospitals, hotels, shops, and industrial spaces across Pune, PCMC, Mumbai, Nashik, Raigad, and Chhatrapati Sambhajinagar.</p>
+		</div>
+		<div class="callback-actions">
+			<a class="callback-primary" href="tel:+918446104688">Call for quick help</a>
+			<a class="callback-secondary" href="https://wa.me/918446104688" target="_blank" rel="noreferrer">Chat on WhatsApp</a>
+		</div>
+	</div>
+</section>
+
+<app-about></app-about>
+<app-services></app-services>
+<app-why-choose-us></app-why-choose-us>
+<app-how-it-works></app-how-it-works>
+
+<section class="proof-section section">
+	<div class="container">
+		<div class="section-heading reveal">
+			<p class="section-tag">Trusted Care</p>
+			<h2>Professional work that feels simple.</h2>
+		</div>
+
+		<div class="testimonial-grid">
+			<article class="testimonial-card reveal" *ngFor="let testimonial of testimonials">
+				<div class="stars" aria-label="Five star rating">★★★★★</div>
+				<p>“{{ testimonial.quote }}”</p>
+				<strong>{{ testimonial.name }}</strong>
+				<span>{{ testimonial.area }}</span>
+			</article>
+		</div>
+	</div>
+</section>
+
+<section class="gallery-section section">
+	<div class="container">
+		<div class="section-heading reveal">
+			<p class="section-tag">Our Approach</p>
+			<h2>Careful work for healthier spaces.</h2>
+		</div>
+
+		<div class="gallery-grid">
+			<figure class="gallery-item reveal" *ngFor="let item of gallery">
+				<img [src]="item.image" [alt]="item.label" />
+				<figcaption>{{ item.label }}</figcaption>
+			</figure>
+		</div>
+	</div>
+</section>
+
+<section class="faq-section section">
+	<div class="container faq-layout">
+		<div class="section-heading reveal">
+			<p class="section-tag">Quick Answers</p>
+			<h2>Everything you need before booking.</h2>
+			<p>Still unsure? Call us and a KATX expert will guide you through the right treatment.</p>
+		</div>
+
+		<div class="faq-list reveal">
+			<article class="faq-item" *ngFor="let faq of faqs; let i = index" [class.open]="faqOpenIndex === i">
+				<button type="button" (click)="toggleFaq(i)" [attr.aria-expanded]="faqOpenIndex === i">
+					<span>{{ faq.question }}</span>
+					<span aria-hidden="true">{{ faqOpenIndex === i ? '−' : '+' }}</span>
+				</button>
+				<p *ngIf="faqOpenIndex === i">{{ faq.answer }}</p>
+			</article>
+		</div>
+	</div>
+</section>
+
+<app-contact></app-contact>

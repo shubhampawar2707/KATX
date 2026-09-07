@@ -1,0 +1,24 @@
+<header class="site-header">
+  <nav class="navbar container" aria-label="Main navigation">
+    <a class="brand" routerLink="/home" aria-label="KATX Home" (click)="closeMenu()">
+      <span class="brand-mark">KAT<span>X</span></span>
+      <span class="brand-subtitle">Pest Control Services</span>
+    </a>
+
+    <button class="menu-toggle" type="button" (click)="toggleMenu()" aria-label="Toggle navigation" [attr.aria-expanded]="isMenuOpen">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="nav-panel" [class.open]="isMenuOpen">
+      <ul class="nav-links">
+        <li *ngFor="let item of navItems">
+          <a [routerLink]="item.href" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMenu()">{{ item.label }}</a>
+        </li>
+      </ul>
+
+      <a class="nav-call" href="tel:+918446104688">Call Now</a>
+    </div>
+  </nav>
+</header>

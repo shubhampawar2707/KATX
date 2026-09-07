@@ -1,1 +1,114 @@
-/* You can add global styles to this file, and also import other style files */
+﻿@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg: #edf9f4;
+  --bg-strong: #e5f6ef;
+  --card: #ffffff;
+  --primary: #24c1c9;
+  --primary-dark: #087f89;
+  --primary-deep: #075b68;
+  --primary-soft: #e0f8f8;
+  --accent: #0a2d3c;
+  --muted: #526b74;
+  --light: #e0f8f8;
+  --border: rgba(8, 127, 137, 0.14);
+  --shadow: 0 22px 55px rgba(8, 38, 50, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Manrope', sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(36, 193, 201, 0.14), transparent 32%),
+    linear-gradient(180deg, var(--bg) 0%, #f3fbfc 100%);
+  color: #12343d;
+  line-height: 1.6;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* Shared layout rhythm used by every routed section and standalone component. */
+.container {
+  width: min(1180px, calc(100% - 4rem));
+  margin-inline: auto;
+}
+
+.section {
+  padding: clamp(3.5rem, 6vw, 5.25rem) 0;
+}
+
+.section-heading {
+  width: min(100%, 760px);
+  margin: 0 auto clamp(2rem, 4vw, 3rem);
+  text-align: center;
+}
+
+.section-heading h2 {
+  margin: 0;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+app-about .about-section,
+app-services .services-section,
+app-why-choose-us .why-section,
+app-contact .contact-section,
+app-how-it-works .process-section {
+  scroll-margin-top: 6rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: min(100% - 2rem, 680px);
+  }
+
+  .section {
+    padding: 3.75rem 0;
+  }
+
+  .section-heading {
+    margin-bottom: 1.75rem;
+  }
+}
+
+a, button, input, select, textarea {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+h1, h2, h3, h4, p {
+  margin-top: 0;
+}
+
+h1, h2, h3, h4 {
+  text-wrap: balance;
+}
+
+button {
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover { transform: translateY(-1px); }
+
+::selection {
+  background: rgba(36, 193, 201, 0.24);
+}

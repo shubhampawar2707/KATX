@@ -1,0 +1,116 @@
+<section id="contact" class="contact-section section">
+  <div class="container contact-layout">
+    <div class="contact-copy reveal">
+      <div class="contact-image" role="img" aria-label="Pest-control technician treating a home"></div>
+      <p class="section-tag">Book a Service</p>
+      <h2>Request a free inspection today.</h2>
+      <p>
+        Speak with our experts and receive the right solution for your pest problems or cleaning needs.
+      </p>
+
+      <div class="contact-promises" aria-label="What happens next">
+        <div><span>01</span><p>Tell us what you are noticing.</p></div>
+        <div><span>02</span><p>Get a clear service recommendation.</p></div>
+        <div><span>03</span><p>Choose a convenient visit time.</p></div>
+      </div>
+
+      <div class="contact-details">
+        <div>
+          <span>Phone</span>
+          <a href="tel:+918446104688">+91 8446104688</a>
+        </div>
+        <div>
+          <span>Email</span>
+          <a href="mailto:info@katx.in">info@katx.in</a>
+        </div>
+        <div>
+          <span>Address</span>
+          <p>Sr.No. 44/2, Chavan Building, Shop No. 03, Ganpati Matha, Warje, Malwadi - 411058</p>
+        </div>
+      </div>
+    </div>
+
+    <form class="contact-form reveal" [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate>
+      <div class="form-heading">
+        <h3>Tell us how we can help</h3>
+        <p>Most enquiries receive a response the same day.</p>
+      </div>
+
+      <div class="field-row">
+        <label>
+          <span>Full Name</span>
+          <input type="text" formControlName="fullName" placeholder="Your full name" />
+          <small *ngIf="contactForm.get('fullName')?.touched && contactForm.get('fullName')?.invalid">Name is required.</small>
+        </label>
+
+        <label>
+          <span>Phone Number</span>
+          <input type="tel" formControlName="phone" placeholder="Your phone number" />
+          <small *ngIf="contactForm.get('phone')?.touched && contactForm.get('phone')?.invalid">Enter a valid phone number.</small>
+        </label>
+      </div>
+
+      <div class="field-row">
+        <label>
+          <span>Email Address</span>
+          <input type="email" formControlName="email" placeholder="Your email address" />
+          <small *ngIf="contactForm.get('email')?.touched && contactForm.get('email')?.invalid">Enter a valid email.</small>
+        </label>
+
+        <label>
+          <span>Select Service</span>
+          <select formControlName="service">
+            <option value="">Select a service</option>
+            <option *ngFor="let item of services" [value]="item">{{ item }}</option>
+          </select>
+          <small *ngIf="contactForm.get('service')?.touched && contactForm.get('service')?.invalid">Service is required.</small>
+        </label>
+
+        <label>
+          <span>Service Area</span>
+          <select formControlName="area">
+            <option value="">Select your area</option>
+            <option *ngFor="let area of areas" [value]="area">{{ area }}</option>
+          </select>
+          <small *ngIf="contactForm.get('area')?.touched && contactForm.get('area')?.invalid">Area is required.</small>
+        </label>
+      </div>
+
+      <div class="field-row">
+        <label>
+          <span>Preferred Date <em>Optional</em></span>
+          <input type="date" formControlName="preferredDate" [min]="minDate" />
+        </label>
+
+        <label>
+          <span>Preferred Time <em>Optional</em></span>
+          <select formControlName="preferredTime">
+            <option value="">Choose a time</option>
+            <option value="Morning (9 AM - 12 PM)">Morning (9 AM - 12 PM)</option>
+            <option value="Afternoon (12 PM - 4 PM)">Afternoon (12 PM - 4 PM)</option>
+            <option value="Evening (4 PM - 7 PM)">Evening (4 PM - 7 PM)</option>
+          </select>
+        </label>
+      </div>
+
+      <label>
+        <span>Message</span>
+        <textarea formControlName="message" rows="5" placeholder="Tell us about your requirement"></textarea>
+        <small *ngIf="contactForm.get('message')?.touched && contactForm.get('message')?.invalid">Message is required.</small>
+      </label>
+
+      <button class="submit-btn" type="submit" [disabled]="isSubmitting">
+        <span *ngIf="!isSubmitting">Send Request</span>
+        <span *ngIf="isSubmitting">Sending...</span>
+      </button>
+
+      <p class="form-message success" *ngIf="submitSuccess">
+        Thank you! Your request has been submitted successfully. Our team will contact you shortly.
+      </p>
+      <div class="form-message error" *ngIf="submitError">
+        <p>{{ submitErrorMessage }}</p>
+        <p>Please try again or <a href="mailto:info@katx.in">email info@katx.in directly</a>.</p>
+      </div>
+    </form>
+  </div>
+</section>

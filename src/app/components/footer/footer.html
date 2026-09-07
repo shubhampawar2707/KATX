@@ -1,0 +1,43 @@
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <h3>KATX F&M SERVICES PVT LTD</h3>
+      <p>Professional Pest Control, Hygiene &amp; Cleaning Solutions for homes, hospitals, hotels, and businesses.</p>
+      <div class="socials" aria-label="Social media links">
+        <a href="#" aria-label="Facebook">f</a>
+        <a href="#" aria-label="Instagram">◎</a>
+        <a href="#" aria-label="LinkedIn">in</a>
+      </div>
+    </div>
+
+    <div class="footer-block">
+      <h4>Quick Links</h4>
+      <ul>
+        <li *ngFor="let item of quickLinks">
+          <a [href]="item.href">{{ item.label }}</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="footer-block">
+      <h4>Services</h4>
+      <ul>
+        <li *ngFor="let service of serviceCategories">{{ service }}</li>
+      </ul>
+    </div>
+
+    <div class="footer-block">
+      <h4>Contact Information</h4>
+      <ul class="contact-list">
+        <li><a href="tel:+918446104688">+91 8446104688</a></li>
+        <li><a href="mailto:info@katx.in">info@katx.in</a></li>
+        <li><a href="https://www.katx.in" target="_blank" rel="noreferrer">www.katx.in</a></li>
+        <li>Sr.No. 44/2, Chavan Building, Shop No. 03, Ganpati Matha, Warje, Malwadi - 411058</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container copyright">
+    © 2026 KATX F&M Services Pvt Ltd. All Rights Reserved.
+  </div>
+</footer>
