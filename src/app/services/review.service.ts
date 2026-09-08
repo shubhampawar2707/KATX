@@ -64,7 +64,7 @@ export class ReviewService {
         service: review.service,
         area: review.area,
         message: review.quote,
-        approved: false,
+        approved: true,
       }),
     });
 
