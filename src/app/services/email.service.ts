@@ -10,18 +10,45 @@ import { ContactRequest } from '../models/contact.model';
   providedIn: 'root',
 })
 export class EmailService {
+  async sendReviewEmail(payload: {
+    name: string;
+    email: string;
+    rating: number;
+    service: string;
+    area: string;
+    message: string;
+  }): Promise<void> {
+    await this.sendTemplate({
+      customer_name: payload.name,
+      customer_email: payload.email,
+      review_name: payload.name,
+      review_email: payload.email,
+      review_rating: `${payload.rating}/5`,
+      review_service: payload.service,
+      review_area: payload.area,
+      review_message: payload.message,
+      customer_message: payload.message,
+      submission_date: new Date().toISOString(),
+      from_name: payload.name,
+      from_email: payload.email,
+      reply_to: payload.email,
+      message: payload.message,
+    });
+  }
+
   async sendQuickEnquiry(payload: {
     name: string;
     phone: string;
     email: string;
     service: string;
+    serviceOther: string;
     location: string;
   }): Promise<void> {
     await this.sendTemplate({
       customer_name: payload.name,
       customer_phone: payload.phone,
       customer_email: payload.email,
-      selected_service: payload.service,
+      selected_service: payload.service === 'Other' ? payload.serviceOther : payload.service,
       service_area: payload.location,
       preferred_date: 'Not specified',
       preferred_time: 'Not specified',

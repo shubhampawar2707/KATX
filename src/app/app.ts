@@ -6,6 +6,7 @@ import { filter } from 'rxjs';
 import { FooterComponent } from './components/footer/footer';
 import { NavbarComponent } from './components/navbar/navbar';
 import { EmailService } from './services/email.service';
+import { ToastService } from './services/toast.service';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +23,6 @@ import { EmailService } from './services/email.service';
 })
 export class App {
   isLeadModalOpen = true;
-  leadSubmitted = false;
   isLeadSubmitting = false;
   leadError = '';
   isHomeRoute = true;
@@ -32,12 +32,14 @@ export class App {
     phone: '',
     email: '',
     service: '',
+    serviceOther: '',
     location: '',
   };
 
   constructor(
     private readonly router: Router,
     private readonly emailService: EmailService,
+    public readonly toastService: ToastService,
   ) {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
@@ -56,8 +58,9 @@ export class App {
 
   submitLeadForm(): void {
     const hasRequiredFields = this.leadForm.name && this.leadForm.phone && this.leadForm.email && this.leadForm.service && this.leadForm.location;
+    const hasOtherService = this.leadForm.service !== 'Other' || this.leadForm.serviceOther.trim();
 
-    if (!hasRequiredFields) {
+    if (!hasRequiredFields || !hasOtherService) {
       return;
     }
 
@@ -66,12 +69,9 @@ export class App {
 
     this.emailService.sendQuickEnquiry(this.leadForm)
       .then(() => {
-        this.leadSubmitted = true;
-        window.setTimeout(() => {
-          this.closeLeadModal();
-          this.leadSubmitted = false;
-          this.leadForm = { name: '', phone: '', email: '', service: '', location: '' };
-        }, 2400);
+        this.toastService.show('Your enquiry was submitted successfully.');
+        this.closeLeadModal();
+        this.leadForm = { name: '', phone: '', email: '', service: '', serviceOther: '', location: '' };
       })
       .catch((error: Error) => {
         this.leadError = error.message || 'Unable to send your enquiry. Please call us directly.';

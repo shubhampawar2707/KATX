@@ -17,6 +17,7 @@ export class NavbarComponent implements OnDestroy {
     { label: 'Services', href: '/services' },
     { label: 'Why Choose Us', href: '/why-choose-us' },
     { label: 'Contact', href: '/contact' },
+    { label: 'Reviews', href: '/reviews' },
   ];
 
   isMenuOpen = false;

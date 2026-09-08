@@ -30,7 +30,7 @@
 		</div>
 		<div class="callback-actions">
 			<a class="callback-primary" href="tel:+918446104688">Call for quick help</a>
-			<a class="callback-secondary" href="https://wa.me/918446104688" target="_blank" rel="noreferrer">Chat on WhatsApp</a>
+			<a class="callback-secondary" href="https://wa.me/918446104688?text=Hi%2C%20I%E2%80%99m%20interested%20in%20your%20pest%20control%20services.%20I%E2%80%99d%20like%20to%20make%20an%20enquiry%2Fbook%20a%20service.%20Please%20share%20the%20details." target="_blank" rel="noreferrer">Chat on WhatsApp</a>
 		</div>
 	</div>
 </section>
@@ -45,18 +45,93 @@
 		<div class="section-heading reveal">
 			<p class="section-tag">Trusted Care</p>
 			<h2>Professional work that feels simple.</h2>
+			<button class="review-open-button" type="button" (click)="openReviewModal()" aria-haspopup="dialog">
+				<span aria-hidden="true">★</span> Add your review
+			</button>
 		</div>
 
-		<div class="testimonial-grid">
-			<article class="testimonial-card reveal" *ngFor="let testimonial of testimonials">
-				<div class="stars" aria-label="Five star rating">★★★★★</div>
-				<p>“{{ testimonial.quote }}”</p>
-				<strong>{{ testimonial.name }}</strong>
-				<span>{{ testimonial.area }}</span>
-			</article>
+		<div class="testimonial-carousel" *ngIf="testimonials.length">
+			<button class="review-arrow review-arrow-prev" *ngIf="testimonials.length > reviewVisibleCount" type="button" (click)="previousReview()" [disabled]="reviewSlideIndex === 0" aria-label="Previous review">‹</button>
+			<div class="testimonial-viewport">
+				<div class="testimonial-track" [style.--review-index]="reviewSlideIndex">
+					<article class="testimonial-slide" *ngFor="let testimonial of testimonials">
+						<div class="testimonial-card">
+							<div class="stars" [attr.aria-label]="testimonial.rating + ' star rating'">{{ '★★★★★'.slice(0, testimonial.rating) }}</div>
+							<p>“{{ testimonial.quote }}”</p>
+							<strong>{{ testimonial.name }}</strong>
+							<span>{{ testimonial.area }}</span>
+						</div>
+					</article>
+				</div>
+			</div>
+			<button class="review-arrow review-arrow-next" *ngIf="testimonials.length > reviewVisibleCount" type="button" (click)="nextReview()" [disabled]="reviewSlideIndex === maxReviewSlideIndex" aria-label="Next review">›</button>
+		</div>
+
+		<div class="review-dots" *ngIf="testimonials.length > reviewVisibleCount" aria-label="Review navigation">
+			<button type="button" *ngFor="let dot of reviewSlideDots" [class.active]="reviewSlideIndex === dot" (click)="selectReview(dot)" [attr.aria-label]="'Show review slide ' + (dot + 1)"></button>
 		</div>
 	</div>
 </section>
+
+<div class="review-modal-backdrop" *ngIf="isReviewModalOpen" role="dialog" aria-modal="true" aria-labelledby="review-modal-title">
+	<div class="review-modal">
+		<button class="review-modal-close" type="button" (click)="closeReviewModal()" aria-label="Close review form">×</button>
+		<div class="review-modal-heading">
+			<span class="review-modal-icon" aria-hidden="true">★</span>
+			<div>
+				<h3 id="review-modal-title">Share your KATX experience</h3>
+				<p>Reviews are checked before appearing publicly.</p>
+			</div>
+		</div>
+
+		<form class="review-modal-form" (ngSubmit)="submitReview()" novalidate>
+			<div class="review-field-row">
+				<label>
+					<span>Your Name</span>
+					<input type="text" [(ngModel)]="reviewForm.name" name="modalReviewName" placeholder="Your name" required />
+				</label>
+				<label>
+					<span>Email Address</span>
+					<input type="email" [(ngModel)]="reviewForm.email" name="modalReviewEmail" placeholder="Your email" required />
+				</label>
+			</div>
+
+			<label>
+				<span>Rating</span>
+				<div class="rating-picker" role="radiogroup" aria-label="Choose a rating">
+					<button type="button" *ngFor="let star of [1, 2, 3, 4, 5]" [class.selected]="star <= reviewForm.rating" (click)="setRating(star)" [attr.aria-label]="star + ' star rating'">★</button>
+				</div>
+			</label>
+
+			<div class="review-field-row">
+				<label>
+					<span>Service</span>
+					<select [(ngModel)]="reviewForm.service" name="modalReviewService" required>
+						<option value="">Select service</option>
+						<option *ngFor="let service of reviewServices" [value]="service">{{ service }}</option>
+					</select>
+				</label>
+				<label>
+					<span>Area</span>
+					<select [(ngModel)]="reviewForm.area" name="modalReviewArea" required>
+						<option value="">Select area</option>
+						<option *ngFor="let area of reviewAreas" [value]="area">{{ area }}</option>
+					</select>
+				</label>
+			</div>
+
+			<label>
+				<span>Your Review</span>
+				<textarea [(ngModel)]="reviewForm.message" name="modalReviewMessage" rows="3" placeholder="Tell us about your experience" required></textarea>
+			</label>
+
+			<button class="review-submit" type="submit" [disabled]="reviewSubmitting">
+				{{ reviewSubmitting ? 'Sending review...' : 'Submit review' }}
+			</button>
+			<p class="review-error" *ngIf="reviewError">{{ reviewError }}</p>
+		</form>
+	</div>
+</div>
 
 <section class="gallery-section section">
 	<div class="container">

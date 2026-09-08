@@ -2,7 +2,7 @@
   <app-navbar></app-navbar>
 
   <div class="lead-modal-backdrop" *ngIf="isLeadModalOpen" aria-modal="true" role="dialog">
-    <div class="lead-modal" *ngIf="!leadSubmitted">
+    <div class="lead-modal">
       <button class="lead-modal-close" type="button" (click)="closeLeadModal()" aria-label="Close enquiry form">×</button>
 
       <div class="lead-modal-header">
@@ -24,7 +24,10 @@
           <option value="rodent">Rodent Control</option>
           <option value="mosquito">Mosquito Control</option>
           <option value="general">General Pest Control</option>
+          <option value="Other">Other</option>
         </select>
+
+        <input *ngIf="leadForm.service === 'Other'" type="text" [(ngModel)]="leadForm.serviceOther" name="serviceOther" placeholder="Tell us the service you need" required />
 
         <input type="text" [(ngModel)]="leadForm.location" name="location" placeholder="Your Location (Area)" required />
 
@@ -35,11 +38,12 @@
       </form>
     </div>
 
-    <div class="lead-modal lead-success" *ngIf="leadSubmitted">
-      <div class="lead-success-icon">✓</div>
-      <h3>Enquiry submitted</h3>
-      <p>Thank you. Our team will contact you shortly.</p>
-    </div>
+  </div>
+
+  <div class="global-toast" *ngIf="toastService.message() as toast" [class.error]="toast.type === 'error'" role="status" aria-live="polite">
+    <span class="global-toast-icon" aria-hidden="true">{{ toast.type === 'success' ? '✓' : '!' }}</span>
+    <span>{{ toast.text }}</span>
+    <button type="button" (click)="toastService.dismiss()" aria-label="Dismiss notification">×</button>
   </div>
 
   <div class="page-content" [class.route-page]="!isHomeRoute" role="main">
@@ -48,7 +52,7 @@
 
   <app-footer></app-footer>
 
-  <a class="whatsapp-float" href="https://wa.me/918446104688" target="_blank" rel="noreferrer" aria-label="WhatsApp chat">
+  <a class="whatsapp-float" href="https://wa.me/918446104688?text=Hi%2C%20I%E2%80%99m%20interested%20in%20your%20pest%20control%20services.%20I%E2%80%99d%20like%20to%20make%20an%20enquiry%2Fbook%20a%20service.%20Please%20share%20the%20details." target="_blank" rel="noreferrer" aria-label="WhatsApp chat">
     <img src="https://cdn.simpleicons.org/whatsapp/ffffff" alt="" aria-hidden="true" />
   </a>
 

@@ -1,5 +1,9 @@
 export const environment = {
   production: false,
+  supabase: {
+    url: 'https://qpotetpelsjgkjhwbmec.supabase.co',
+    publishableKey: 'sb_publishable_wVPRjMBeZPWfduUFcyFTYw_-TxYDgZe',
+  },
   // Add your EmailJS credentials here before deployment.
   // Replace the placeholders below with your actual EmailJS values from the dashboard.
   // Example:

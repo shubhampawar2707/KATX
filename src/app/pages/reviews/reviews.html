@@ -1,0 +1,65 @@
+<section class="reviews-page section">
+  <div class="container reviews-page-layout">
+    <div class="reviews-page-copy">
+      <p class="section-tag">Customer Reviews</p>
+      <h1>Share your KATX experience.</h1>
+      <p>Tell us how our pest-control, hygiene, or cleaning service helped you. Your review is sent to our team for approval before it is published.</p>
+
+      <div class="review-trust-list">
+        <div><strong>01</strong><span>Choose your rating</span></div>
+        <div><strong>02</strong><span>Tell us about the service</span></div>
+        <div><strong>03</strong><span>Submit for review</span></div>
+      </div>
+    </div>
+
+    <form class="reviews-page-form" (ngSubmit)="submitReview()" novalidate>
+      <h2>Leave a review</h2>
+      <p class="form-intro">Your feedback helps future customers choose the right care.</p>
+
+      <div class="review-field-row">
+        <label>
+          <span>Your Name</span>
+          <input type="text" [(ngModel)]="reviewForm.name" name="name" placeholder="Your name" required />
+        </label>
+        <label>
+          <span>Email Address</span>
+          <input type="email" [(ngModel)]="reviewForm.email" name="email" placeholder="Your email" required />
+        </label>
+      </div>
+
+      <label>
+        <span>Rating</span>
+        <div class="rating-picker" role="radiogroup" aria-label="Choose a rating">
+          <button type="button" *ngFor="let star of [1, 2, 3, 4, 5]" [class.selected]="star <= reviewForm.rating" (click)="setRating(star)" [attr.aria-label]="star + ' star rating'">★</button>
+        </div>
+      </label>
+
+      <div class="review-field-row">
+        <label>
+          <span>Service</span>
+          <select [(ngModel)]="reviewForm.service" name="service" required>
+            <option value="">Select service</option>
+            <option *ngFor="let service of reviewServices" [value]="service">{{ service }}</option>
+          </select>
+        </label>
+        <label>
+          <span>Area</span>
+          <select [(ngModel)]="reviewForm.area" name="area" required>
+            <option value="">Select area</option>
+            <option *ngFor="let area of reviewAreas" [value]="area">{{ area }}</option>
+          </select>
+        </label>
+      </div>
+
+      <label>
+        <span>Your Review</span>
+        <textarea [(ngModel)]="reviewForm.message" name="message" rows="5" placeholder="Tell us about your experience" required></textarea>
+      </label>
+
+      <button class="review-submit" type="submit" [disabled]="reviewSubmitting">
+        {{ reviewSubmitting ? 'Sending review...' : 'Submit review' }}
+      </button>
+      <p class="review-error" *ngIf="reviewError">{{ reviewError }}</p>
+    </form>
+  </div>
+</section>

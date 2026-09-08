@@ -14,6 +14,7 @@ export class FooterComponent {
     { label: 'About', href: '#about' },
     { label: 'Services', href: '#services' },
     { label: 'Contact', href: '#contact' },
+    { label: 'Reviews', href: '/reviews' },
   ];
 
   serviceCategories = ['Homes & Offices', 'Hospitals & Hotels', 'Commercial Services', 'Cleaning Services'];

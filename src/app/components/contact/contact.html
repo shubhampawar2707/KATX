@@ -62,8 +62,14 @@
           <select formControlName="service">
             <option value="">Select a service</option>
             <option *ngFor="let item of services" [value]="item">{{ item }}</option>
+            <option value="Other">Other</option>
           </select>
           <small *ngIf="contactForm.get('service')?.touched && contactForm.get('service')?.invalid">Service is required.</small>
+        </label>
+
+        <label *ngIf="contactForm.value.service === 'Other'">
+          <span>Other Service</span>
+          <input type="text" formControlName="serviceOther" placeholder="Tell us the service you need" />
         </label>
 
         <label>
@@ -71,8 +77,14 @@
           <select formControlName="area">
             <option value="">Select your area</option>
             <option *ngFor="let area of areas" [value]="area">{{ area }}</option>
+            <option value="Other">Other</option>
           </select>
           <small *ngIf="contactForm.get('area')?.touched && contactForm.get('area')?.invalid">Area is required.</small>
+        </label>
+
+        <label *ngIf="contactForm.value.area === 'Other'">
+          <span>Other Area</span>
+          <input type="text" formControlName="areaOther" placeholder="Enter your service area" />
         </label>
       </div>
 
@@ -104,9 +116,6 @@
         <span *ngIf="isSubmitting">Sending...</span>
       </button>
 
-      <p class="form-message success" *ngIf="submitSuccess">
-        Thank you! Your request has been submitted successfully. Our team will contact you shortly.
-      </p>
       <div class="form-message error" *ngIf="submitError">
         <p>{{ submitErrorMessage }}</p>
         <p>Please try again or <a href="mailto:info@katx.in">email info@katx.in directly</a>.</p>
